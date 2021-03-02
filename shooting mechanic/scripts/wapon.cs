@@ -12,6 +12,7 @@ public class wapon : MonoBehaviour
     private int damage = 0;
     public int mindamage = 10;
     public int maxdamage = 15;
+    public int Ammo = 5;
 
     private void Start()
     {
@@ -20,7 +21,7 @@ public class wapon : MonoBehaviour
 
     }
     void Update() {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && (Ammo >= 1))
         {
             shoot();
             shot.Play();
@@ -28,11 +29,22 @@ public class wapon : MonoBehaviour
             anim.Play("flintlock_fire");
 
         }
+        if (Input.GetButtonDown("Fire1") && (Ammo <= 0))
+        {
+            Debug.Log("Empty!");
+        }
     }
 
     void shoot ()
     {
         RaycastHit2D hitinfo = Physics2D.Raycast(firepoint.position, firepoint.right);
+
+        //haalt 1 ammo weg als je schiet
+        if (Ammo > 0)
+        {
+            Ammo -= 1;
+            Debug.Log(Ammo);
+        }
 
         if (hitinfo)
         {

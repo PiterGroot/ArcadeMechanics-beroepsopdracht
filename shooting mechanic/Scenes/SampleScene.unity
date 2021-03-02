@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb798948bce36ef4faedd09f98595c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crosshairs: {fileID: 1455877993}
+  crosshairs: {fileID: 1586647323}
   gun: {fileID: 818150048}
 --- !u!20 &519420031
 Camera:
@@ -380,9 +380,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firepoint: {fileID: 254344465}
   smoke: {fileID: 1121921926}
-  damage: 10
   mindamage: 10
   maxdamage: 15
+  Ammo: 5
 --- !u!4 &808786196
 Transform:
   m_ObjectHideFlags: 0
@@ -659,7 +659,7 @@ Transform:
   m_Father: {fileID: 808786196}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 38.122}
---- !u!1 &1455877993
+--- !u!1 &1586647323
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -667,8 +667,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1455877995}
-  - component: {fileID: 1455877994}
+  - component: {fileID: 1586647325}
+  - component: {fileID: 1586647324}
   m_Layer: 0
   m_Name: crosshair
   m_TagString: Untagged
@@ -676,13 +676,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!212 &1455877994
+--- !u!212 &1586647324
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455877993}
+  m_GameObject: {fileID: 1586647323}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -716,7 +716,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 566a926c0ee61dc499c32c2ea9268e85, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6769414ad01c0e544acc90ef54caa3f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -727,16 +727,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1455877995
+--- !u!4 &1586647325
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455877993}
+  m_GameObject: {fileID: 1586647323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -925,7 +925,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4,
     type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.031012535, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
