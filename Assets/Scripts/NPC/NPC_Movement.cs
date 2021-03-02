@@ -132,11 +132,9 @@ public class NPC_Movement : MonoBehaviour
     #region SlimeCode
     void CheckNextMoveSlime()
     {   //mag en/of kan de npc een sprong uitvoeren
-        print("Tries to jump");
         if (canMoveRandomly && grounded)
         {
             //we kunnen een willekeurige sprong doen
-            print("e");
             IdleLeap();
         }
     }
@@ -177,7 +175,6 @@ public class NPC_Movement : MonoBehaviour
             {
                 //leap animatie aanzetten en LeapRight() functie aanroepen, canLeapRandomly op
                 //false zodat er geen dubbele sprongen gemaakt kunnen worden
-                print("d");
                 canMoveRandomly = false;
                 NPCAnim.SetTrigger("Leap");
                 StartCoroutine(LeapRight());
@@ -186,7 +183,6 @@ public class NPC_Movement : MonoBehaviour
             {
                 //leap animatie aanzetten en LeapLeft() functie aanroepen, canLeapRandomly op
                 //false zodat er geen dubbele sprongen gemaakt kunnen worden
-                print("h");
                 canMoveRandomly = false;
                 NPCAnim.SetTrigger("Leap");
                 StartCoroutine(LeapLeft());
@@ -196,7 +192,6 @@ public class NPC_Movement : MonoBehaviour
         {
             //npc blijft stil zitten, de loop begint weer opnieuw bij CheckNextMove() door de InvokeRepeating instructie
             canMoveRandomly = true;
-            print("eed");
         }
     }
     public IEnumerator LeapRight()

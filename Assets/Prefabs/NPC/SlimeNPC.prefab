@@ -119,8 +119,8 @@ MonoBehaviour:
   grounded: 0
   NegativeTriggerBoundX: 0
   IsEnabled: 1
-  MoveDust: {fileID: 4907780006176273468, guid: 73e2a841a0331f04fbb6911c4de34533, type: 3}
-  LandDust: {fileID: 9208550158056283322, guid: e1a7f3d29daf6d34ab2f54c013b246d0, type: 3}
+  MoveDust: {fileID: 699195846389197532}
+  LandDust: {fileID: 699195846513955540}
   MovingSound: Jump
   LandingSound: Land
   NPCType: 0
@@ -328,6 +328,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4907780006176273470, guid: 73e2a841a0331f04fbb6911c4de34533, type: 3}
   m_PrefabInstance: {fileID: 5597944664160362208}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &699195846389197532 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4907780006176273468, guid: 73e2a841a0331f04fbb6911c4de34533, type: 3}
+  m_PrefabInstance: {fileID: 5597944664160362208}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8538646216692158062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -388,5 +393,10 @@ PrefabInstance:
 --- !u!4 &699195846513955562 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9208550158056283268, guid: e1a7f3d29daf6d34ab2f54c013b246d0, type: 3}
+  m_PrefabInstance: {fileID: 8538646216692158062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &699195846513955540 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 9208550158056283322, guid: e1a7f3d29daf6d34ab2f54c013b246d0, type: 3}
   m_PrefabInstance: {fileID: 8538646216692158062}
   m_PrefabAsset: {fileID: 0}
