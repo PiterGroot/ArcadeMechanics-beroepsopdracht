@@ -11,7 +11,6 @@ public class Combat : MonoBehaviour
     private Vector2 PlayerPosition;
     private Rigidbody2D rigidPlayer;
     private int deltaTimeMultiplier = 75;
-    private float NpcSpriteWidth;
     private FlipSprite flipSprite;
 
     [Header("Combat")]
