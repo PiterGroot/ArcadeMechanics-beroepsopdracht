@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 1823402852144650599}
   - component: {fileID: 7100265925445397040}
   - component: {fileID: 2135412657762643981}
+  - component: {fileID: 1719681215663477345}
   - component: {fileID: 1823402852144650584}
   - component: {fileID: 1823402852144650597}
   - component: {fileID: 1823402852144650596}
@@ -149,6 +150,18 @@ MonoBehaviour:
   AngryMoveSpeed: 5
   DamageStrenght: {x: 5, y: 10}
   AngrySprite: {fileID: 21300000, guid: 3fcf57ad57cfb2242910f0db17451415, type: 3}
+--- !u!114 &1719681215663477345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823402852144650586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8ea58045cba8c4eb0f603ee5246797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &1823402852144650584
 SpriteRenderer:
   m_ObjectHideFlags: 0

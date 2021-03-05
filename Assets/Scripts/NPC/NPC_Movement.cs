@@ -15,12 +15,14 @@ public class NPC_Movement : MonoBehaviour
     private bool isMoving = false;
     private bool MoveCharRight = false;
     private bool MoveCharLeft = false;
+    private float MoveSpeed = 2f; //alleen voor character (lopen over de grond)
+    private FlipSprite flipSprite; 
+    private SpriteRenderer SpriteRenderer;
     [HideInInspector]public Vector2 CenterPos;
     [HideInInspector]public float PositiveTriggerBoundX;
     [HideInInspector]public bool grounded = false;
     [HideInInspector]public float NegativeTriggerBoundX;
     [HideInInspector]public bool IsEnabled = true;
-    private float MoveSpeed = 2f; //alleen voor npc
 
     [Header("Components")]
     [Tooltip("Particle effect voor het bewegen van de npc.")]
@@ -46,13 +48,14 @@ public class NPC_Movement : MonoBehaviour
     public Vector2 MinMaxValue = new Vector2(.3f, .7f);
     #endregion
 
-    #region General
     void Start()
     {
-        //initialiseer componenten
+        //caching componenten
         NPCAnim = gameObject.GetComponent<Animator>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
-        Application.targetFrameRate = 60;
+        flipSprite = gameObject.GetComponent<FlipSprite>();
+        SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        Application.targetFrameRate = 144;
 
         //geef componenten een value
         if (RandomizeActivity) { Activity = Random.Range(MinMaxValue.x, MinMaxValue.y); }
@@ -68,6 +71,7 @@ public class NPC_Movement : MonoBehaviour
         if (NPCType == NPCType.Character) { NPCAnim.SetTrigger("IdleCharacter"); InvokeRepeating("CheckNextMoveCharacter", randDelay, 2.85f); }
     }
 
+    #region General
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //ground bool aanzetten als npc op de grond staat
@@ -196,6 +200,7 @@ public class NPC_Movement : MonoBehaviour
     }
     public IEnumerator LeapRight()
     {
+        flipSprite.FlipLeft(SpriteRenderer);
         //npc gaat naar rechts springen
         if (!grounded)
         {
@@ -215,6 +220,7 @@ public class NPC_Movement : MonoBehaviour
     }
     public IEnumerator LeapLeft()
     {
+        flipSprite.FlipRight(SpriteRenderer);
         //npc gaat naar links springen
         if (!grounded)
         {
@@ -287,11 +293,13 @@ public class NPC_Movement : MonoBehaviour
             }
             if (MoveCharRight)
             {
+                flipSprite.FlipRight(SpriteRenderer);
                 transform.position = new Vector3(transform.position.x + MoveSpeed * Time.deltaTime, transform.position.y);
                 CreateJumpDust();
             }
             if (MoveCharLeft)
             {
+                flipSprite.FlipLeft(SpriteRenderer);
                 transform.position = new Vector3(transform.position.x - MoveSpeed * Time.deltaTime, transform.position.y);
                 CreateJumpDust();
             }

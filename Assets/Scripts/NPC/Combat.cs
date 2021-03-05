@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Combat : MonoBehaviour
 {
-    //prive componenten
+    #region Variables
+    //private componenten
     private SpriteRenderer SpriteRenderer;
     private Animator NPCAnim;
     private Vector2 PlayerPosition;
     private Rigidbody2D rigidPlayer;
     private int deltaTimeMultiplier = 75;
+    private float NpcSpriteWidth;
+    private FlipSprite flipSprite;
 
     [Header("Combat")]
     [Tooltip("Is de npc momenteel in de angry (aanvallen) status.")]
@@ -26,11 +29,14 @@ public class Combat : MonoBehaviour
     public Vector2Int DamageStrenght = new Vector2Int(5, 10);
     [Tooltip("Sprite van de npc als hij in attack state is, als hij dat niet hoeft stop dan gewoon de normale sprite van de npc hierin.")]
     public Sprite AngrySprite;
+    #endregion
+    
     #region General
     private void Start()
     {
         SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         NPCAnim = gameObject.GetComponent<Animator>();
+        flipSprite = gameObject.GetComponent<FlipSprite>();
     }
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
@@ -45,6 +51,7 @@ public class Combat : MonoBehaviour
                 npcObj.canMoveRandomly = false;
                 gameObject.layer = AngryLayerInt;
                 NPCAnim.SetTrigger("IdleSlimeFast");
+                npcObj.IsEnabled = false;
                 npcObj.Activity = 0;
                 yield return new WaitForSeconds(.001f);
                 npcObj.Activity = 1;
@@ -78,12 +85,14 @@ public class Combat : MonoBehaviour
     {
         if (collision.collider.tag == "Player")
         {
+            //force naar links
             if (transform.position.x >= PlayerPosition.x)
             {
                 PerformAttack();
                 int randLeft = gameObject.GetComponent<NPC_Movement>().RandomInt(-160, -171);
                 rigidPlayer.AddForce(new Vector2(randLeft, 240f) * Time.deltaTime * deltaTimeMultiplier);
             }
+            //force naar rechts
             if (transform.position.x <= PlayerPosition.x)
             {
                 PerformAttack();
@@ -92,25 +101,25 @@ public class Combat : MonoBehaviour
             }
         }
     }
-   
+    //geeft player x en y positie terug
     public Vector2 GetPlayerPos()
     {
         Vector2 PlayerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position;
         return PlayerPos;
     }
-
-   private void PerformAttack()
+    //attack met een random value
+    private void PerformAttack()
     {
         FindObjectOfType<AudioManager>().Play("Land");
         int randDamage = Random.Range(DamageStrenght.x, DamageStrenght.y);
         print($"Damage for: {randDamage}");
     }
-
+    
     #endregion
 
     #region SlimeCombat
 
-
+    //zoekt speler en beweegt npc 
     private IEnumerator SearchSlime()
     {
         StartCoroutine(SlimeMoveNPC());
@@ -129,12 +138,14 @@ public class Combat : MonoBehaviour
             if (transform.position.x >= PlayerPosition.x - AttackDistance)
             {
                 //npc moet naar links 
+                flipSprite.FlipLeft(SpriteRenderer);
                 transform.position = new Vector3(transform.position.x - AngryMoveSpeed * Time.deltaTime, transform.position.y);
                 gameObject.GetComponent<NPC_Movement>().CreateJumpDust();
             }
             if (transform.position.x <= PlayerPosition.x + AttackDistance)
             {
                 //npc moet naar rechts 
+                flipSprite.FlipRight(SpriteRenderer);
                 transform.position = new Vector3(transform.position.x + AngryMoveSpeed * Time.deltaTime, transform.position.y);
                 gameObject.GetComponent<NPC_Movement>().CreateJumpDust();
             }
@@ -161,12 +172,14 @@ public class Combat : MonoBehaviour
             if (transform.position.x >= PlayerPosition.x - AttackDistance)
             {
                 //npc moet naar links 
+                flipSprite.FlipLeft(SpriteRenderer);
                 transform.position = new Vector3(transform.position.x - AngryMoveSpeed * Time.deltaTime, transform.position.y);
                 gameObject.GetComponent<NPC_Movement>().CreateJumpDust();
             }
             if (transform.position.x <= PlayerPosition.x + AttackDistance)
             {
-                //npc moet naar rechts 
+                //npc moet naar rechts
+                flipSprite.FlipRight(SpriteRenderer);
                 transform.position = new Vector3(transform.position.x + AngryMoveSpeed * Time.deltaTime, transform.position.y);
                 gameObject.GetComponent<NPC_Movement>().CreateJumpDust();
             }
