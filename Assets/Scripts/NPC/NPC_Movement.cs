@@ -12,7 +12,6 @@ public class NPC_Movement : MonoBehaviour
     //private componenten
     private Rigidbody2D rb2d;
     [HideInInspector] public Animator NPCAnim;
-    private bool isMoving = false;
     private bool MoveCharRight = false;
     private bool MoveCharLeft = false;
     private float MoveSpeed = 2f; //alleen voor character (lopen over de grond)
@@ -33,6 +32,10 @@ public class NPC_Movement : MonoBehaviour
     [SerializeField, Space]private string MovingSound = "Jump";
     [Tooltip("naam sound effect voor het landen, zie AudioManager.")]
     [SerializeField]private string LandingSound = "Land";
+    [SerializeField, Space]private string IdleAnimationName;
+    [SerializeField]private string MoveAnimationName;
+    public string AngryAnimationName;
+
 
     [Header("Behaviour")]
     public NPCType NPCType = NPCType.Slime;
@@ -67,8 +70,8 @@ public class NPC_Movement : MonoBehaviour
         //willekeurige vertraging voor de eerste sprong en het checken van de volgende zet
         float randDelay = Random.Range(1f, 4f);
 
-        if (NPCType == NPCType.Slime) { NPCAnim.SetTrigger("IdleSlime"); InvokeRepeating("CheckNextMoveSlime", randDelay, 2.85f); }
-        if (NPCType == NPCType.Character) { NPCAnim.SetTrigger("IdleCharacter"); InvokeRepeating("CheckNextMoveCharacter", randDelay, 2.85f); }
+        if (NPCType == NPCType.Slime) { NPCAnim.SetTrigger(IdleAnimationName); InvokeRepeating("CheckNextMoveSlime", randDelay, 3f); }
+        if (NPCType == NPCType.Character) { NPCAnim.SetTrigger(IdleAnimationName); InvokeRepeating("CheckNextMoveCharacter", randDelay, 2.85f); }
     }
 
     #region General
@@ -162,6 +165,7 @@ public class NPC_Movement : MonoBehaviour
         }
         else
         {
+            yield return new WaitForSeconds(1f);
             canMoveRandomly = true;
         }
     }
@@ -200,12 +204,12 @@ public class NPC_Movement : MonoBehaviour
     }
     public IEnumerator LeapRight()
     {
-        flipSprite.FlipLeft(SpriteRenderer);
         //npc gaat naar rechts springen
         if (!grounded)
         {
             yield return new WaitUntil(() => grounded == true);
             yield return new WaitForSeconds(.5f);
+            flipSprite.FlipLeft(SpriteRenderer);
             int randRight = RandomInt(75, 150);
             rb2d.AddForce(new Vector2(randRight, 350f));
             CreateJumpDust();
@@ -213,6 +217,7 @@ public class NPC_Movement : MonoBehaviour
         else
         {
             yield return new WaitForSeconds(.5f);
+            flipSprite.FlipLeft(SpriteRenderer);
             int randRight = RandomInt(75, 150);
             rb2d.AddForce(new Vector2(randRight, 350f));
             CreateJumpDust();
@@ -220,12 +225,12 @@ public class NPC_Movement : MonoBehaviour
     }
     public IEnumerator LeapLeft()
     {
-        flipSprite.FlipRight(SpriteRenderer);
         //npc gaat naar links springen
         if (!grounded)
         {
             yield return new WaitUntil(() => grounded == true);
             yield return new WaitForSeconds(.5f);
+             flipSprite.FlipRight(SpriteRenderer);
             int randLeft = RandomInt(-75, -150);
             rb2d.AddForce(new Vector2(randLeft, 350f));
             CreateJumpDust();
@@ -233,6 +238,7 @@ public class NPC_Movement : MonoBehaviour
         else
         {
             yield return new WaitForSeconds(.5f);
+            flipSprite.FlipRight(SpriteRenderer);
             int randLeft = RandomInt(-75, -150);
             rb2d.AddForce(new Vector2(randLeft, 350f));
             CreateJumpDust();
@@ -263,43 +269,34 @@ public class NPC_Movement : MonoBehaviour
         {
             //aan de rechter kant, dus moet naar links bewegen
             yield return new WaitForSeconds(Random.Range(1.5f, 2.1f));
-            NPCAnim.SetBool("Move", true);
+            NPCAnim.SetTrigger(MoveAnimationName);
             MoveLeft();
         }
         if (transform.position.x <= NegativeTriggerBoundX && IsEnabled)
         {
             //aan de linker kant, dus moet naar rechts bewegen
             yield return new WaitForSeconds(Random.Range(1.5f, 2.1f));
-            NPCAnim.SetBool("Move", true);
+            NPCAnim.SetTrigger(MoveAnimationName);
             MoveRight();
         }
         else
         {
             canMoveRandomly = true;
-            isMoving = false;
         }
     }
     private void Update()
     {
         if(NPCType == NPCType.Character)
         {
-            if (isMoving)
-            {
-                NPCAnim.SetBool("Move", true);
-            }
-            else
-            {
-                NPCAnim.SetBool("Move", false);
-            }
             if (MoveCharRight)
             {
-                flipSprite.FlipRight(SpriteRenderer);
+                flipSprite.FlipLeft(SpriteRenderer);
                 transform.position = new Vector3(transform.position.x + MoveSpeed * Time.deltaTime, transform.position.y);
                 CreateJumpDust();
             }
             if (MoveCharLeft)
             {
-                flipSprite.FlipLeft(SpriteRenderer);
+                flipSprite.FlipRight(SpriteRenderer);
                 transform.position = new Vector3(transform.position.x - MoveSpeed * Time.deltaTime, transform.position.y);
                 CreateJumpDust();
             }
@@ -307,27 +304,23 @@ public class NPC_Movement : MonoBehaviour
     }
     public void IdleMove()
     {
-        //50/50 kans om te springen of stil te staan, om het natuurlijker te laten lijken
+        //50/50 kans om te bewegen of stil te staan, om het natuurlijker te laten lijken
         bool Move = (Random.value < Activity);
         if (Move)
         {
-            //npc gaat springen, dit betekent dus een random sprong naar een willekeurig kant
+            //npc gaat bewegen, dit betekent dus een random sprong naar een willekeurig kant
             //50/50 kans om naar links of rechts te gaan
             bool LeftOrRight = (Random.value > 0.5f);
             if (LeftOrRight)
             {
-                //leap animatie aanzetten en LeapRight() functie aanroepen, canLeapRandomly op
-                //false zodat er geen dubbele sprongen gemaakt kunnen worden
+                NPCAnim.SetTrigger(MoveAnimationName);
                 canMoveRandomly = false;
-                isMoving = true;
                 MoveRight();
             }
             else
             {
-                //leap animatie aanzetten en LeapLeft() functie aanroepen, canLeapRandomly op
-                //false zodat er geen dubbele sprongen gemaakt kunnen worden
+                NPCAnim.SetTrigger(MoveAnimationName);
                 canMoveRandomly = false;
-                isMoving = true;
                 MoveLeft();
             }
         }
@@ -335,7 +328,6 @@ public class NPC_Movement : MonoBehaviour
         {
             //npc blijft stil zitten, de loop begint weer opnieuw bij CheckNextMove() door de InvokeRepeating instructie
             canMoveRandomly = true;
-            isMoving = false;
         }
     }
     public void MoveRight()
@@ -357,15 +349,16 @@ public class NPC_Movement : MonoBehaviour
     {
         MoveCharRight = false;
         MoveCharLeft = false;
-        isMoving = false;
         PlayIdleAnimCharacter();
     }
     public void PlayIdleAnimCharacter()
     {
-        NPCAnim.SetTrigger("IdleCharacter");
+        NPCAnim.SetTrigger(IdleAnimationName);
         StartCoroutine(CheckPositionCharacter());
     }
     #endregion
 
-
+    public void TestMessage(){
+        print("Printing");
+    }
 }

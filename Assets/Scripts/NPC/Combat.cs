@@ -49,7 +49,7 @@ public class Combat : MonoBehaviour
                 isAngry = true;
                 npcObj.canMoveRandomly = false;
                 gameObject.layer = AngryLayerInt;
-                NPCAnim.SetTrigger("IdleSlimeFast");
+                NPCAnim.SetTrigger(npcObj.AngryAnimationName);
                 npcObj.IsEnabled = false;
                 npcObj.Activity = 0;
                 yield return new WaitForSeconds(.001f);
@@ -66,7 +66,7 @@ public class Combat : MonoBehaviour
                 isAngry = true;
                 npcObj.canMoveRandomly = false;
                 gameObject.layer = AngryLayerInt;
-                NPCAnim.SetTrigger("IdleCharacterFast");
+                NPCAnim.SetTrigger(npcObj.AngryAnimationName);
                 npcObj.IsEnabled = false;
                 npcObj.Activity = 0;
                 yield return new WaitForSeconds(.001f);
