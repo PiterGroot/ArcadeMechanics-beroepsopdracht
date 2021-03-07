@@ -48,8 +48,8 @@ public class Combat : MonoBehaviour
                 //combat code for slime npc
                 isAngry = true;
                 npcObj.canMoveRandomly = false;
-                gameObject.layer = AngryLayerInt;
                 NPCAnim.SetTrigger(npcObj.AngryAnimationName);
+                gameObject.layer = AngryLayerInt;
                 npcObj.IsEnabled = false;
                 npcObj.Activity = 0;
                 yield return new WaitForSeconds(.001f);
@@ -65,8 +65,8 @@ public class Combat : MonoBehaviour
                 //combat code for character npc
                 isAngry = true;
                 npcObj.canMoveRandomly = false;
-                gameObject.layer = AngryLayerInt;
                 NPCAnim.SetTrigger(npcObj.AngryAnimationName);
+                gameObject.layer = AngryLayerInt;
                 npcObj.IsEnabled = false;
                 npcObj.Activity = 0;
                 yield return new WaitForSeconds(.001f);
@@ -171,16 +171,24 @@ public class Combat : MonoBehaviour
             if (transform.position.x >= PlayerPosition.x - AttackDistance)
             {
                 //npc moet naar links 
-                flipSprite.FlipLeft(SpriteRenderer);
                 transform.position = new Vector3(transform.position.x - AngryMoveSpeed * Time.deltaTime, transform.position.y);
                 gameObject.GetComponent<NPC_Movement>().CreateJumpDust();
             }
             if (transform.position.x <= PlayerPosition.x + AttackDistance)
             {
                 //npc moet naar rechts
-                flipSprite.FlipRight(SpriteRenderer);
                 transform.position = new Vector3(transform.position.x + AngryMoveSpeed * Time.deltaTime, transform.position.y);
                 gameObject.GetComponent<NPC_Movement>().CreateJumpDust();
+            }
+            if (transform.position.x < PlayerPosition.x)
+            {
+                //npc moet naar rechts flippen
+                flipSprite.FlipLeft(SpriteRenderer);
+            }
+            if (transform.position.x > PlayerPosition.x)
+            {
+                //npc moet naar links flippen
+                flipSprite.FlipRight(SpriteRenderer);
             }
         }
     }

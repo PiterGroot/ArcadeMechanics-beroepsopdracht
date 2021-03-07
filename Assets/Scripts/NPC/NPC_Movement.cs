@@ -28,12 +28,15 @@ public class NPC_Movement : MonoBehaviour
     [Space]public ParticleSystem MoveDust;
     [Tooltip("Particle effect voor de landing van de npc.")]
     public ParticleSystem LandDust;
-    [Tooltip("naam sound effect voor bewegen, zie AudioManager.")]
+    [Tooltip("Naam sound effect voor bewegen, zie AudioManager.")]
     [SerializeField, Space]private string MovingSound = "Jump";
-    [Tooltip("naam sound effect voor het landen, zie AudioManager.")]
+    [Tooltip("Naam sound effect voor het landen, zie AudioManager.")]
     [SerializeField]private string LandingSound = "Land";
+    [Tooltip("Naam van de idle animation clip")]
     [SerializeField, Space]private string IdleAnimationName;
+     [Tooltip("Naam van de move (lopen / bewegen) animation clip")]
     [SerializeField]private string MoveAnimationName;
+    [Tooltip("Naam van de angry (als hij achter de speler aan zit) animation clip. Als dat niet nodig is stop dan de idle naam hierin")]
     public string AngryAnimationName;
 
 
@@ -333,7 +336,7 @@ public class NPC_Movement : MonoBehaviour
     public void MoveRight()
     {
         //npc gaat naar rechts springen
-        float randRightTime = RandomFloat(1.65f, 3f);
+        float randRightTime = RandomFloat(1.65f, 2.6f);
         Invoke("SetIsMovingFalse", randRightTime);
         MoveCharRight = true;
     }
@@ -341,7 +344,7 @@ public class NPC_Movement : MonoBehaviour
     public void MoveLeft()
     {
         //npc gaat naar links springen
-        float randLeftTime = RandomFloat(1.65f, 3f);
+        float randLeftTime = RandomFloat(1.65f, 2.6f);
         Invoke("SetIsMovingFalse", randLeftTime);
         MoveCharLeft = true;
     }
