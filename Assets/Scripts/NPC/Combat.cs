@@ -12,10 +12,14 @@ public class Combat : MonoBehaviour
     private Rigidbody2D rigidPlayer;
     private int deltaTimeMultiplier = 75;
     private FlipSprite flipSprite;
+    [HideInInspector]public bool canAttackRight = false;
+    [HideInInspector]public bool canAttackLeft = false;
 
     [Header("Combat")]
     [Tooltip("Is de npc momenteel in de angry (aanvallen) status.")]
     public bool isAngry = false;
+    [Tooltip("Doet de npc een eigen attack? (schieten, gooien ect.) Zo ja, call je functie dan in de PerformExternalAttack()")]
+    public bool ExternalAttack = false;
     [Tooltip("Nummer van de angry layer voor de npc")]
     public int AngryLayerInt = 11;
     [Tooltip("Hoe snel de npc de positie van de speler kan ondekken en verversen. In secondes")]
@@ -36,7 +40,7 @@ public class Combat : MonoBehaviour
         SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         NPCAnim = gameObject.GetComponent<Animator>();
         flipSprite = gameObject.GetComponent<FlipSprite>();
-         InvokeRepeating("CheckPosition", 0f, 2f);
+         InvokeRepeating("PerformExternalAttack", 0f, 2f);
     }
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
@@ -114,7 +118,13 @@ public class Combat : MonoBehaviour
         int randDamage = Random.Range(DamageStrenght.x, DamageStrenght.y);
         print($"Damage for: {randDamage}");
     }
-
+    private void PerformExternalAttack()
+    {
+        if(canAttackLeft && canAttackRight && ExternalAttack)
+        {
+            print("BAM");
+        }
+    }
     #endregion
 
     #region SlimeCombat
@@ -174,12 +184,20 @@ public class Combat : MonoBehaviour
                 //npc moet naar links 
                 transform.position = new Vector3(transform.position.x - AngryMoveSpeed * Time.deltaTime, transform.position.y);
                 gameObject.GetComponent<NPC_Movement>().CreateJumpDust();
+                canAttackLeft = true;
+            }
+            else{
+                canAttackLeft = false;
             }
             if (transform.position.x <= PlayerPosition.x + AttackDistance)
             {
                 //npc moet naar rechts
                 transform.position = new Vector3(transform.position.x + AngryMoveSpeed * Time.deltaTime, transform.position.y);
                 gameObject.GetComponent<NPC_Movement>().CreateJumpDust();
+                canAttackRight = true;
+            }
+            else{
+                canAttackRight = false;
             }
             if (transform.position.x < PlayerPosition.x)
             {
@@ -193,17 +211,6 @@ public class Combat : MonoBehaviour
             }
         }
     }
-    //checkt of character zelf een attack kan uitvoeren (schieten, gooien ect)
-    private void CheckPosition()
-    {
-        if(transform.position.x > PlayerPosition.x + AttackDistance && isAngry)
-        {
-            print("Can attack Negative x");
-        }
-        if(transform.position.x < PlayerPosition.x + AttackDistance && isAngry)
-        {
-            print("Can attack Positive x");
-        }
-    }
+    
     #endregion
 }
