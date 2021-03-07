@@ -21,7 +21,7 @@ public class Combat : MonoBehaviour
     [Tooltip("Hoe snel de npc de positie van de speler kan ondekken en verversen. In secondes")]
     [SerializeField, Range(0, .2f)]private float SearchRate = .075f;
     [Tooltip("De afstand tot wanneer de npc stopt en een aanval gaat proberen te uitvoeren.")]
-    [SerializeField, Range(0, 3f)]private float AttackDistance = 1.2f;
+    [SerializeField, Range(0, 10f)]private float AttackDistance = 1.2f;
     [Tooltip("De snelheid van de npc als hij achter de speler aan gaat")]
     [SerializeField, Range(0, 40f)]private float AngryMoveSpeed = 5f;
     [Tooltip("Min(x) max(y) values van de random damage range.")]
@@ -36,6 +36,7 @@ public class Combat : MonoBehaviour
         SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         NPCAnim = gameObject.GetComponent<Animator>();
         flipSprite = gameObject.GetComponent<FlipSprite>();
+         InvokeRepeating("CheckPosition", 0f, 2f);
     }
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
@@ -113,7 +114,7 @@ public class Combat : MonoBehaviour
         int randDamage = Random.Range(DamageStrenght.x, DamageStrenght.y);
         print($"Damage for: {randDamage}");
     }
-    
+
     #endregion
 
     #region SlimeCombat
@@ -190,6 +191,18 @@ public class Combat : MonoBehaviour
                 //npc moet naar links flippen
                 flipSprite.FlipRight(SpriteRenderer);
             }
+        }
+    }
+    //checkt of character zelf een attack kan uitvoeren (schieten, gooien ect)
+    private void CheckPosition()
+    {
+        if(transform.position.x > PlayerPosition.x + AttackDistance && isAngry)
+        {
+            print("Can attack Negative x");
+        }
+        if(transform.position.x < PlayerPosition.x + AttackDistance && isAngry)
+        {
+            print("Can attack Positive x");
         }
     }
     #endregion
