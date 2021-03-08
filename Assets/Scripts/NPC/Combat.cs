@@ -32,8 +32,9 @@ public class Combat : MonoBehaviour
     public Vector2Int DamageStrenght = new Vector2Int(5, 10);
     [Tooltip("Sprite van de npc als hij in attack state is, als hij dat niet hoeft stop dan gewoon de normale sprite van de npc hierin.")]
     public Sprite AngrySprite;
+    public int health = 100;
     #endregion
-    
+
     #region General
     private void Start()
     {
@@ -125,6 +126,22 @@ public class Combat : MonoBehaviour
             //hier de shoot code 
         }
     }
+
+    public void Takedamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
+    }
+
     #endregion
 
     #region SlimeCombat
