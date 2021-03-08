@@ -40,7 +40,7 @@ public class Combat : MonoBehaviour
         SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         NPCAnim = gameObject.GetComponent<Animator>();
         flipSprite = gameObject.GetComponent<FlipSprite>();
-         InvokeRepeating("PerformExternalAttack", 0f, 2f);
+        InvokeRepeating("PerformExternalAttack", 0f, 2f);
     }
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
@@ -59,7 +59,7 @@ public class Combat : MonoBehaviour
                 npcObj.Activity = 0;
                 yield return new WaitForSeconds(.001f);
                 npcObj.Activity = 1;
-                 yield return new WaitForSeconds(.001f);
+                yield return new WaitForSeconds(.001f);
                 npcObj.Activity = 0;
                 SpriteRenderer.sprite = AngrySprite;
                 yield return new WaitForSeconds(Random.Range(.5f, 1f));
@@ -148,14 +148,14 @@ public class Combat : MonoBehaviour
             if (transform.position.x >= PlayerPosition.x - AttackDistance)
             {
                 //npc moet naar links 
-                flipSprite.FlipLeft(SpriteRenderer);
+                flipSprite.FlipRight(SpriteRenderer);
                 transform.position = new Vector3(transform.position.x - AngryMoveSpeed * Time.deltaTime, transform.position.y);
                 gameObject.GetComponent<NPC_Movement>().CreateJumpDust();
             }
             if (transform.position.x <= PlayerPosition.x + AttackDistance)
             {
                 //npc moet naar rechts 
-                flipSprite.FlipRight(SpriteRenderer);
+                flipSprite.FlipLeft(SpriteRenderer);
                 transform.position = new Vector3(transform.position.x + AngryMoveSpeed * Time.deltaTime, transform.position.y);
                 gameObject.GetComponent<NPC_Movement>().CreateJumpDust();
             }
