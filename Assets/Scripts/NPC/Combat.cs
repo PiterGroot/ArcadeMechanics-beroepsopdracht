@@ -122,7 +122,7 @@ public class Combat : MonoBehaviour
     {
         if(canAttackLeft && canAttackRight && ExternalAttack)
         {
-            print("BAM");
+            //hier de shoot code 
         }
     }
     #endregion
