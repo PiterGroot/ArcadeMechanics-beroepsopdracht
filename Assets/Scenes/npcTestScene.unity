@@ -853,5 +853,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: gunNPC
       objectReference: {fileID: 0}
+    - target: {fileID: 482619498232046712, guid: b7bb68245e28caa4eac89d466d65a88d, type: 3}
+      propertyPath: ExternalAttack
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7bb68245e28caa4eac89d466d65a88d, type: 3}
