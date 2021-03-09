@@ -71,7 +71,7 @@ MonoBehaviour:
   AlwaysDrawGizmo: 1
   DesiredArea: 7
   Activity: 0.5
-  MinMaxValue: {x: 0.3, y: 0.7}
+  MinMaxValue: {x: 0.45, y: 0.7}
 --- !u!114 &482619498232046712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
   canAttackRight: 0
   canAttackLeft: 0
   isAngry: 0
-  ExternalAttack: 0
+  ExternalAttack: 1
   AngryLayerInt: 11
   SearchRate: 0.075
   AttackDistance: 1.2

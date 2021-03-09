@@ -1013,6 +1013,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1635980257893094716, guid: 5a0f7a597bd011a47b0abb62ff119ebe, type: 3}
+      propertyPath: sounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635980257893094716, guid: 5a0f7a597bd011a47b0abb62ff119ebe, type: 3}
+      propertyPath: sounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635980257893094716, guid: 5a0f7a597bd011a47b0abb62ff119ebe, type: 3}
+      propertyPath: sounds.Array.data[2].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635980257893094716, guid: 5a0f7a597bd011a47b0abb62ff119ebe, type: 3}
+      propertyPath: sounds.Array.data[2].mixer
+      value: 
+      objectReference: {fileID: 24300002, guid: 9065f1900a12b974d8aaedf2a08b86f5, type: 2}
+    - target: {fileID: 1635980257893094716, guid: 5a0f7a597bd011a47b0abb62ff119ebe, type: 3}
+      propertyPath: sounds.Array.data[2].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635980257893094716, guid: 5a0f7a597bd011a47b0abb62ff119ebe, type: 3}
+      propertyPath: sounds.Array.data[2].volume
+      value: 0.281
+      objectReference: {fileID: 0}
     - target: {fileID: 1635980257893094717, guid: 5a0f7a597bd011a47b0abb62ff119ebe, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1059,57 +1083,62 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a0f7a597bd011a47b0abb62ff119ebe, type: 3}
---- !u!1001 &1288887872369941093
+--- !u!1001 &2008345698
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 170607526945541394, guid: b7bb68245e28caa4eac89d466d65a88d, type: 3}
+    - target: {fileID: 1823402852144650586, guid: dacd1642de555214ca028d6006e15cfc, type: 3}
+      propertyPath: m_Name
+      value: SlimeNPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823402852144650599, guid: dacd1642de555214ca028d6006e15cfc, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 170607526945541394, guid: b7bb68245e28caa4eac89d466d65a88d, type: 3}
+    - target: {fileID: 1823402852144650599, guid: dacd1642de555214ca028d6006e15cfc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 170607526945541394, guid: b7bb68245e28caa4eac89d466d65a88d, type: 3}
+    - target: {fileID: 1823402852144650599, guid: dacd1642de555214ca028d6006e15cfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.199688
+      value: -0.33
       objectReference: {fileID: 0}
-    - target: {fileID: 170607526945541394, guid: b7bb68245e28caa4eac89d466d65a88d, type: 3}
+    - target: {fileID: 1823402852144650599, guid: dacd1642de555214ca028d6006e15cfc, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 170607526945541394, guid: b7bb68245e28caa4eac89d466d65a88d, type: 3}
+    - target: {fileID: 1823402852144650599, guid: dacd1642de555214ca028d6006e15cfc, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 170607526945541394, guid: b7bb68245e28caa4eac89d466d65a88d, type: 3}
+    - target: {fileID: 1823402852144650599, guid: dacd1642de555214ca028d6006e15cfc, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 170607526945541394, guid: b7bb68245e28caa4eac89d466d65a88d, type: 3}
+    - target: {fileID: 1823402852144650599, guid: dacd1642de555214ca028d6006e15cfc, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 170607526945541394, guid: b7bb68245e28caa4eac89d466d65a88d, type: 3}
+    - target: {fileID: 1823402852144650599, guid: dacd1642de555214ca028d6006e15cfc, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 170607526945541394, guid: b7bb68245e28caa4eac89d466d65a88d, type: 3}
+    - target: {fileID: 1823402852144650599, guid: dacd1642de555214ca028d6006e15cfc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 170607526945541394, guid: b7bb68245e28caa4eac89d466d65a88d, type: 3}
+    - target: {fileID: 1823402852144650599, guid: dacd1642de555214ca028d6006e15cfc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 170607526945541394, guid: b7bb68245e28caa4eac89d466d65a88d, type: 3}
+    - target: {fileID: 1823402852144650599, guid: dacd1642de555214ca028d6006e15cfc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 170607526945541423, guid: b7bb68245e28caa4eac89d466d65a88d, type: 3}
       propertyPath: m_Name
       value: gunNPC
@@ -1122,5 +1151,7 @@ PrefabInstance:
       propertyPath: ExternalAttack
       value: 1
       objectReference: {fileID: 0}
+=======
+>>>>>>> 03cbde0c488ff675555566ccb82e15c5a60665dc
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b7bb68245e28caa4eac89d466d65a88d, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: dacd1642de555214ca028d6006e15cfc, type: 3}

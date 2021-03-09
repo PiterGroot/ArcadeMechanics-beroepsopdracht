@@ -5,10 +5,16 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public int AmountOfCoins = 0;
-    public Transform player;
+    public Transform coin;
 
     void Update()
     {
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        AmountOfCoins += 1;
+        Debug.Log(AmountOfCoins);
     }
 }
