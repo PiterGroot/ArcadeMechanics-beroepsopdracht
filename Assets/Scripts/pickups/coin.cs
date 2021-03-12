@@ -4,8 +4,21 @@ using UnityEngine;
 
 public class coin : MonoBehaviour
 {
-    void Update()
+    Inventory addcoin;
+    public GameObject player;
+
+    private void Start()
     {
-        
+        addcoin = player.GetComponent<Inventory>();
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+
+            addcoin.AmountOfCoins += 1;
+            Destroy(gameObject);
+        }
+    }
+
 }
