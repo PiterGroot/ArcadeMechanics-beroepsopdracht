@@ -16,6 +16,7 @@ public class Combat : MonoBehaviour
     [HideInInspector]public bool canAttackLeft = false;
 
     [Header("Combat")]
+    public int health = 100;
     [Tooltip("Is de npc momenteel in de angry (aanvallen) status.")]
     public bool isAngry = false;
     [Tooltip("Doet de npc een eigen attack? (schieten, gooien ect.) Zo ja, call je functie dan in de PerformExternalAttack()")]
@@ -32,7 +33,6 @@ public class Combat : MonoBehaviour
     public Vector2Int DamageStrenght = new Vector2Int(5, 10);
     [Tooltip("Sprite van de npc als hij in attack state is, als hij dat niet hoeft stop dan gewoon de normale sprite van de npc hierin.")]
     public Sprite AngrySprite;
-    public int health = 100;
     #endregion
 
     #region General
@@ -123,7 +123,7 @@ public class Combat : MonoBehaviour
     {
         if(canAttackLeft && canAttackRight && ExternalAttack)
         {
-            //hier de shoot code 
+            //als npc een eigen attack heeft, voer de code dan hier uit
         }
     }
 
