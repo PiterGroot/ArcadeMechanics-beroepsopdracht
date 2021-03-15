@@ -61,7 +61,7 @@ public class NPC_Movement : MonoBehaviour
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         flipSprite = gameObject.GetComponent<FlipSprite>();
         SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        Application.targetFrameRate = 144;
+        //Application.targetFrameRate = 144;
 
         //geef componenten een value
         if (RandomizeActivity) { Activity = Random.Range(MinMaxValue.x, MinMaxValue.y); }
@@ -303,6 +303,10 @@ public class NPC_Movement : MonoBehaviour
                 transform.position = new Vector3(transform.position.x - MoveSpeed * Time.deltaTime, transform.position.y);
                 CreateJumpDust();
             }
+        }
+        //test
+        if(Input.GetKeyDown(KeyCode.Space)){
+            TestMessage();
         }
     }
     public void IdleMove()
