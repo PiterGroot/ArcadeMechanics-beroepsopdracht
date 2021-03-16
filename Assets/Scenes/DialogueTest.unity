@@ -799,6 +799,7 @@ MonoBehaviour:
     sentences:
     - HELLO MY NAME IS JOHN AND THIS IS MY SHOP
     - TAKE A LOOK AT MY SHOP AND SEE IF YOU NEED ANYTHING
+    - MUHAHAHAHAH
     - OK BYE NOW
     SoundFileName: Land
     PositionsOnScreen: {x: 0, y: 0}
