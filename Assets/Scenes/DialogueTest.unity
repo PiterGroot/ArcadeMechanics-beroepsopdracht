@@ -425,7 +425,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 300, y: 400}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
@@ -570,6 +570,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1635980257893094716, guid: 5a0f7a597bd011a47b0abb62ff119ebe, type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0.078
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635980257893094716, guid: 5a0f7a597bd011a47b0abb62ff119ebe, type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 0.078
+      objectReference: {fileID: 0}
     - target: {fileID: 1635980257893094717, guid: 5a0f7a597bd011a47b0abb62ff119ebe, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -677,8 +685,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 209, y: 25}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 276.03806, y: 32.33993}
+  m_SizeDelta: {x: 85.51329, y: 21.84452}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1453850861
 MonoBehaviour:
@@ -787,7 +795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: JOHN
+    name: JAMES
     sentences:
     - HELLO MY NAME IS JOHN AND THIS IS MY SHOP
     - TAKE A LOOK AT MY SHOP AND SEE IF YOU NEED ANYTHING
@@ -853,10 +861,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0

@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class Ammo : MonoBehaviour
 {
-    wapon AddAmmo;
+    Inventory AddAmmo;
+    public GameObject player;
     void Start()
     {
-
+        AddAmmo = player.GetComponent<Inventory>();
     }
 
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.gameObject.CompareTag("Player"))
+        {
+
+            AddAmmo.Ammo += 15;
+            Destroy(gameObject);
+        }
     }
 }
