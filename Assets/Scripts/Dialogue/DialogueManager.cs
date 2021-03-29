@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    private bool AutoPlay = false;
+
     public Animator Anim;
     public GameObject DialogueBox;
     public Text nameText;
@@ -20,6 +22,9 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        if(dialogue.AutoPlay){
+            AutoPlay = true;
+        }
         PlayerPrefs.SetString("SoundFile", dialogue.SoundFileName);
         DialogueBox.SetActive(true);
         Anim.enabled = true;
@@ -27,7 +32,7 @@ public class DialogueManager : MonoBehaviour
         FindObjectOfType<DialoguePosition>().SetPosition(dialogue.PositionsOnScreen);
         nameText.text = dialogue.name;
         sentences.Clear();
-        foreach(string sentence in dialogue.sentences)
+        foreach(string sentence in dialogue.Sentences)
         {
             sentences.Enqueue(sentence);
         }
@@ -47,11 +52,16 @@ public class DialogueManager : MonoBehaviour
     IEnumerator TypeSentence(string sentence)
     {
         dialogueText.text = "";
+        yield return new WaitForSeconds(.8f);
         foreach(char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
             FindObjectOfType<AudioManager>().Play(PlayerPrefs.GetString("SoundFile"));
             yield return new WaitForSeconds(0.03f);
+        }
+        if(AutoPlay){
+            yield return new WaitForSeconds(1.5f);
+            DisplayNextSentence();
         }
     }
     void EndDialogue()

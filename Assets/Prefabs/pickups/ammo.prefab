@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6989668588905827883}
   - component: {fileID: 6989668588905827880}
   - component: {fileID: 6989668588905828053}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ammo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 6989668588905827881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -38.46, y: -8.99, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f4b493bb65f2f4298b4f9e756f43e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 7052862067257773338, guid: 850ae22d4c6de4a41b242ef81b0870ac, type: 3}
 --- !u!61 &6989668588905828053
 BoxCollider2D:
   m_ObjectHideFlags: 0

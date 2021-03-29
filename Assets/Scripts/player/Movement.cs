@@ -5,13 +5,11 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float speed = 3;
-    private FlipSprite fs;
-    private SpriteRenderer sr;
+    private FlipSpriteScale FlipSprite;
 
     void Start()
     {
-        sr = gameObject.GetComponent<SpriteRenderer>();
-        fs = gameObject.GetComponent<FlipSprite>();
+        FlipSprite = gameObject.GetComponent<FlipSpriteScale>();
     }
 
     void Update()
@@ -19,12 +17,20 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             transform.position += new Vector3(-speed, 0, 0) * Time.deltaTime;
-            fs.FlipLeft(sr);
+            FlipSprite.FlipRight();
         }
         if (Input.GetKey(KeyCode.D))
         {
             transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;
-            fs.FlipRight(sr);
+            FlipSprite.FlipLeft();
+        }
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            transform.position += new Vector3(1, 0, 0) * Time.deltaTime;
+        }
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            transform.position += new Vector3(-1, 0, 0) * Time.deltaTime;
         }
     }
 }

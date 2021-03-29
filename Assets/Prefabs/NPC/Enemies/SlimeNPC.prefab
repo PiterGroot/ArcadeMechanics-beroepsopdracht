@@ -146,13 +146,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e7ddf15ed813934d99190412e2a940b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canAttackRight: 0
+  canAttackLeft: 0
+  health: 20
+  Kill: 0
   isAngry: 0
+  ExternalAttack: 0
   AngryLayerInt: 11
   SearchRate: 0.075
   AttackDistance: 1.2
   AngryMoveSpeed: 5
   DamageStrenght: {x: 5, y: 11}
   AngrySprite: {fileID: 21300000, guid: 3fcf57ad57cfb2242910f0db17451415, type: 3}
+  TimeToColor: 0.1
+  DeathParticle: {fileID: 5738011659571620302, guid: f754e979935f8634bb126af3cc3c186c, type: 3}
+  Coin: {fileID: 457677267613608843, guid: 5a2e4c8cc1b90cf48a54ce607ea3aec3, type: 3}
+  AmmoPickup: {fileID: 6989668588905827881, guid: 83b9f33fbcf3e554fb66bb50958c1329, type: 3}
+  despawntime: 100
 --- !u!114 &1719681215663477345
 MonoBehaviour:
   m_ObjectHideFlags: 0

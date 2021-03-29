@@ -13,9 +13,8 @@ public class coin : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && other as BoxCollider2D != null)
         {
-
             addcoin.AmountOfCoins += 1;
             Destroy(gameObject);
         }

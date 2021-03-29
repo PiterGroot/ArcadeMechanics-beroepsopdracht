@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Combat : MonoBehaviour
 {
     #region Variables
+
     //private componenten
     private SpriteRenderer SpriteRenderer;
     private Animator NPCAnim;
@@ -12,11 +14,14 @@ public class Combat : MonoBehaviour
     private Rigidbody2D rigidPlayer;
     private int deltaTimeMultiplier = 75;
     private FlipSprite flipSprite;
+    private Color defaultColor;
     [HideInInspector]public bool canAttackRight = false;
     [HideInInspector]public bool canAttackLeft = false;
 
+    public Action EnemyDied;
     [Header("Combat")]
     public int health = 100;
+    public bool Kill = false;
     [Tooltip("Is de npc momenteel in de angry (aanvallen) status.")]
     public bool isAngry = false;
     [Tooltip("Doet de npc een eigen attack? (schieten, gooien ect.) Zo ja, call je functie dan in de PerformExternalAttack()")]
@@ -33,6 +38,16 @@ public class Combat : MonoBehaviour
     public Vector2Int DamageStrenght = new Vector2Int(5, 10);
     [Tooltip("Sprite van de npc als hij in attack state is, als hij dat niet hoeft stop dan gewoon de normale sprite van de npc hierin.")]
     public Sprite AngrySprite;
+    [Tooltip("hoe lang de sprite een andere kleur is wanneer hij geraakt is")]
+    public float TimeToColor;
+    [Tooltip("de preafab van het death effect")]
+    public ParticleSystem DeathParticle;
+    [Tooltip("de prefab van de coin pickup")]
+    public GameObject Coin;
+    [Tooltip("de prefab van de ammo pickup")]
+    public GameObject AmmoPickup;
+    [Tooltip("hoelang het duurt totdat de ammo despawned")]
+    public float despawntime = 100;
     #endregion
 
     #region General
@@ -42,6 +57,7 @@ public class Combat : MonoBehaviour
         NPCAnim = gameObject.GetComponent<Animator>();
         flipSprite = gameObject.GetComponent<FlipSprite>();
         InvokeRepeating("PerformExternalAttack", 0f, 2f);
+        defaultColor = SpriteRenderer.color;
     }
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
@@ -63,7 +79,7 @@ public class Combat : MonoBehaviour
                 yield return new WaitForSeconds(.001f);
                 npcObj.Activity = 0;
                 SpriteRenderer.sprite = AngrySprite;
-                yield return new WaitForSeconds(Random.Range(.5f, 1f));
+                yield return new WaitForSeconds(UnityEngine.Random.Range(.5f, 1f));
                 StartCoroutine(SearchSlime());
             }
             if (npcObj.NPCType == NPCType.Character)
@@ -80,7 +96,7 @@ public class Combat : MonoBehaviour
                  yield return new WaitForSeconds(.001f);
                 npcObj.Activity = 0;
                 SpriteRenderer.sprite = AngrySprite;
-                yield return new WaitForSeconds(Random.Range(.5f, 1f));
+                yield return new WaitForSeconds(UnityEngine.Random.Range(.5f, 1f));
                 StartCoroutine(SearchCharacter());
             }
         }
@@ -116,7 +132,7 @@ public class Combat : MonoBehaviour
     private void PerformAttack()
     {
         FindObjectOfType<AudioManager>().Play("Land");
-        int randDamage = Random.Range(DamageStrenght.x, DamageStrenght.y);
+        int randDamage = UnityEngine.Random.Range(DamageStrenght.x, DamageStrenght.y);
         print($"Damage for: {randDamage}");
     }
     private void PerformExternalAttack()
@@ -130,18 +146,51 @@ public class Combat : MonoBehaviour
     public void Takedamage(int damage)
     {
         health -= damage;
+        StartCoroutine(SwitchColor());
 
         if (health <= 0)
         {
+            drops();
             Die();
         }
     }
 
     void Die()
     {
+        EnemyDied();
+        ParticleSystem particle = Instantiate(DeathParticle, transform.position, transform.rotation);
+        particle.Play();
         Destroy(gameObject);
+        Destroy(particle, 1);
+    }
+    void drops()
+    {
+        GameObject coins = Instantiate(Coin, transform.position + , transform.rotation);
+        GameObject Ammopickups = Instantiate(AmmoPickup, transform.position, transform.rotation);
+        Destroy(coins, despawntime);
+        Destroy(Ammopickups, despawntime);
+    }
+    private void Update() {
+        if(Kill){
+            Kill = false;
+            Die();
+        }
     }
 
+    IEnumerator SwitchColor()
+    {
+        SpriteRenderer.color = new Color(1f, 0.30196078f, 0.30196078f);
+        yield return new WaitForSeconds(TimeToColor);
+        SpriteRenderer.color = defaultColor;
+    }
+    /*
+    IEnumerator DeathParticleTime()
+    {
+        ParticleSystem particle = Instantiate(DeathParticle, transform.position, transform.rotation);
+        DeathParticle.Play();
+        yield return new WaitForSeconds(1);
+    }
+    */
     #endregion
 
     #region SlimeCombat

@@ -13,9 +13,8 @@ public class Ammo : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && other as BoxCollider2D != null)
         {
-
             AddAmmo.Ammo += 15;
             Destroy(gameObject);
         }

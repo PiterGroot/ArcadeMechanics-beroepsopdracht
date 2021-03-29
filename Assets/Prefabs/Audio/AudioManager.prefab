@@ -58,3 +58,24 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - mixer: {fileID: 24300002, guid: 9065f1900a12b974d8aaedf2a08b86f5, type: 2}
+    name: BuyItem
+    clip: {fileID: 8300000, guid: da81926ac60fada478b955a1b2a22d10, type: 3}
+    volume: 0.281
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - mixer: {fileID: 24300002, guid: 9065f1900a12b974d8aaedf2a08b86f5, type: 2}
+    name: Error
+    clip: {fileID: 8300000, guid: 5097bc93ce79a304cbaf59f3ea67acee, type: 3}
+    volume: 0.281
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - mixer: {fileID: 24300002, guid: 9065f1900a12b974d8aaedf2a08b86f5, type: 2}
+    name: Scroll
+    clip: {fileID: 8300000, guid: 90cece968b8a77b4e8b85cec4259dda7, type: 3}
+    volume: 0.13
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

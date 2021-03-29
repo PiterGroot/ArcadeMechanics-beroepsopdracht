@@ -10,6 +10,7 @@ public class PointAndShoot : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = false; 
         Cursor.visible = false;
         if (Cursor.visible == false)
             Debug.Log("wank");
