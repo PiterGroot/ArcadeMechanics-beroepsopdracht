@@ -1,4 +1,4 @@
-<h2> Beroepsopdracht Arcade Mechanics </h2>
+<h2> Beroepsopdracht Vertical Slice </h2>
 <h3> Team bestaat uit: </h3>
  | George | Piter | Lucas | Bart | Nisa | Marissa | Lisa | Ayman |
 <h4> Welkom bij onze github pagina van onze beroepsopdracht van de module Vertical Slice. Op deze pagina staan alle files die wij gebruiken bij het maken van de game.</h4>
